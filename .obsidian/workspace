@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "index.md",
+            "file": "API/Methods/GET.md",
             "mode": "source"
           }
         }
@@ -68,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "index.md",
+                "file": "API/Methods/GET.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,6 +88,10 @@
   },
   "active": "6687373a92ecbc7c",
   "lastOpenFiles": [
+    "API/Methods/GET.md",
+    "API/Input types/PathVariable.md",
+    "API/Input types/RequestParam.md",
+    "API/Api helper.md",
     "index.md",
     "README.md",
     "Untitled.md"
