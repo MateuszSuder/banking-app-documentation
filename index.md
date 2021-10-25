@@ -1,5 +1,5 @@
-zakładanie kont wykonywanie przelewów historia przelewów zestawienie operacji z historii do pdf opcja cyklicznego przelewu walutomat
 
+Funkcjonalności:
 * Zakładanie konta użytkownika
 	* Rejestracja
 	* Potwierdzenie maila (*)

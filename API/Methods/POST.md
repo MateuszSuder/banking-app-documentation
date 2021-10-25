@@ -3,8 +3,6 @@ POST używamy do stworzenia nowych obiektów.
 
 * Request input
 	* [[RequestBody]]
-	* [[PathVariable]]
-	* [[RequestParam]]*
 * Response status (selected)
 	* [200  OK](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200)
 	* [201  Created](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201)
