@@ -1,11 +1,11 @@
 
 Funkcjonalności:
 * Zakładanie konta użytkownika
-	* Rejestracja
-	* Potwierdzenie maila (*)
-	* Otrzymanie kodów do potwierdzania transkacji na maila
+	* Rejestracja - Front (Auth0)
+	* Potwierdzenie maila (*) - Front (Auth0)
+	* Otrzymanie kodów do potwierdzania transkacji na maila - [[verification-codes]]
 * Zakładanie kont
-	* Konta standardowe
+	* Konta standardowe 
 	* Konta wielowalutowe
 	* Konto kryptowalutowe
 * Autoryzacja i autentykacja (Standard oAuth2, platforma Auth0)

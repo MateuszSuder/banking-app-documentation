@@ -6,3 +6,11 @@ Metody:
 * [[POST]]
 * [[PUT]]
 * [[DELETE]]
+
+* Globalne metody/funkcje itp:
+	* [[Auth]]
+	* [[Proxy]]
+	* [[Mailer]]
+* Endpointy
+	* "/"
+		* [[Health]]
