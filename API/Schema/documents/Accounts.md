@@ -1,7 +1,7 @@
 ```json
 {
-	_id: "NumerRachunku(string)"
-	currencies: [
+	_id: "NumerRachunku(int)"
+	currencies?: [
 		{
 			currency: "waluta",
 			amount: "float"
@@ -14,7 +14,7 @@
 			code: "int (8 digits)"
 		}
 	],
-	loans: [
+	loans?: [
 		{
 			currency: "waluta",
 			amount: "float",
@@ -23,7 +23,17 @@
 			interest(odsetki za zwłokę): "int",
 			autoPayout: "boolean"
 		}
-	] 
+	],
+	standingOrders(przelewy cykliczne)?: [
+		{
+			title: "string",
+			to: "NumerRachunku",
+			nextPayment: "date - can be past date if failed",
+			lastPaymentFailed: "boolean",
+			currenct: "waluta",
+			amount: "float"
+		}
+	]
 }
 ```
 NumerRachunku - "CC AAAA AAAA BBBB BBBB BBBB BBBB":
