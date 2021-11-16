@@ -14,5 +14,4 @@ Przebieg:
 2. Użycie metody pozwala na wysłanie maila
 
 Co można użyc:
-* https://www.baeldung.com/java-email
-* https://www.tutorialspoint.com/java/java_sending_email.htm
+* [**Java Mail Sender**](https://www.baeldung.com/spring-email)
