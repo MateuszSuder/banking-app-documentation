@@ -4,23 +4,12 @@
     "type": "split",
     "children": [
       {
-        "id": "d7ccc417b17b70ba",
+        "id": "282b9b19bf405772",
         "type": "leaf",
         "state": {
           "type": "markdown",
           "state": {
             "file": "API/Schema/Collections/Accounts.md",
-            "mode": "source"
-          }
-        }
-      },
-      {
-        "id": "abd57820bc5c6cf2",
-        "type": "leaf",
-        "state": {
-          "type": "markdown",
-          "state": {
-            "file": "functionalities.md",
             "mode": "source"
           }
         }
@@ -97,17 +86,17 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "d7ccc417b17b70ba",
+  "active": "282b9b19bf405772",
   "lastOpenFiles": [
     "API/Schema/Collections/Accounts.md",
-    "API/Schema/Collections/CryptoLevels.md",
     "API/Schema/Collections/ExchangeRates.md",
     "API/Schema/Collections/CryptoLevels.md",
-    "functionalities.md",
     "API/Schema/Collections/Transactions.md",
-    "Tasks.md",
-    "README.md",
-    "API/Api helper.md",
-    "API/Schema/Collections/Users.md"
+    "functionalities.md",
+    "API/Schema/documents/Accounts.md",
+    "API/Schema/documents/Transactions.md",
+    "API/Schema/documents/Users.md",
+    "API/Schema/documents/Codes.md",
+    "Tasks.md"
   ]
 }

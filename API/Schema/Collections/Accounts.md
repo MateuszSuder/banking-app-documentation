@@ -16,12 +16,22 @@
 	],
 	loans?: [
 		{
-			currency: "waluta",
-			amount: "float",
 			startedAt: "date",
-			monthInstallment(rata): "int",
-			interest(odsetki za zwłokę): "int",
-			autoPayout: "boolean"
+			endsAt: "date",
+			lentAmount: "float",
+			totalToPay: "float",
+			monthInstallment(rata): "float",
+			installments: [
+				{
+					_id
+					amount: "float",
+					amountLeftToPay: "float",
+					paymentDate(data do kiedy trzeba zapłacic): "date",
+					paidAt: "date/null"
+				}
+			]
+			interest(odsetki za zwłokę): "float",
+			autoPayment: "boolean"
 		}
 	],
 	standingOrders(przelewy cykliczne)?: [
