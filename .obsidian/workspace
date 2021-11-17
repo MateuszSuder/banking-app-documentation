@@ -6,19 +6,17 @@
       {
         "id": "d7ccc417b17b70ba",
         "type": "leaf",
-        "dimension": 43.01282051282052,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "API/Schema/documents/Accounts.md",
+            "file": "API/Schema/Collections/Accounts.md",
             "mode": "source"
           }
         }
       },
       {
-        "id": "282b9b19bf405772",
+        "id": "abd57820bc5c6cf2",
         "type": "leaf",
-        "dimension": 56.98717948717948,
         "state": {
           "type": "markdown",
           "state": {
@@ -81,7 +79,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "API/Schema/documents/Accounts.md",
+                "file": "API/Schema/Collections/Accounts.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -101,15 +99,15 @@
   },
   "active": "d7ccc417b17b70ba",
   "lastOpenFiles": [
-    "API/Schema/documents/Accounts.md",
-    "API/Schema/documents/Transactions.md",
-    "API/Schema/documents/Users.md",
-    "API/Schema/documents/Codes.md",
+    "API/Schema/Collections/Accounts.md",
+    "API/Schema/Collections/CryptoLevels.md",
+    "API/Schema/Collections/ExchangeRates.md",
+    "API/Schema/Collections/CryptoLevels.md",
     "functionalities.md",
+    "API/Schema/Collections/Transactions.md",
     "Tasks.md",
+    "README.md",
     "API/Api helper.md",
-    "API/Endpoints/verification-codes.md",
-    "API/Endpoints/health.md",
-    "API/Global/Mailer.md"
+    "API/Schema/Collections/Users.md"
   ]
 }

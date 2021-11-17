@@ -3,11 +3,11 @@
 ## Podawajmy pierwszą literę nazwiska, jeżeli wykonujemy jakiś task :)
 
 * Priorytet 1
-	* [[Health]] *
-	* [[Auth]] ** (Blokuje każdy task z autoryzowanym endpoint)
 	* [[Mailer]] *** (Blokuje [[Verification-codes]])
 	* [[Verification-codes]] *
 * Priorytet 2
 * Priorytet 3
 	* [[Proxy]] **
 * Zrobione
+ 	* [[Health]] *
+	* [[Auth]] ** (Blokuje każdy task z autoryzowanym endpoint)
