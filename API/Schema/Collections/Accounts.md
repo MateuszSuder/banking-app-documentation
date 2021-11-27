@@ -1,7 +1,7 @@
 ```json
 {
 	"_id": "NumerRachunku(string)"
-	"currencies"?: [
+	"currencies?": [
 		{
 			"currency": "waluta",
 			"amount": "float"
