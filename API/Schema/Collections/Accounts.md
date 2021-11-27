@@ -1,57 +1,57 @@
 ```json
 {
-	_id: "NumerRachunku(int)"
-	currencies?: [
+	"_id": "NumerRachunku(string)"
+	"currencies"?: [
 		{
-			currency: "waluta",
-			amount: "float"
+			"currency": "waluta",
+			"amount": "float"
 		},
 		{}
 	],
-	codes: [
+	"codes": [
 		{
-			_id: "int (1-8)"
-			code: "int (8 digits)"
+			"_id": "int (1-8)"
+			"code": "String (8 digits)"
 		}
 	],
-	loans?: [
+	"loans?": [
 		{
-			startedAt: "date",
-			endsAt: "date",
-			lentAmount: "float",
-			totalToPay: "float",
-			monthInstallment(rata): "float",
-			installments: [
+			"startedAt": "date",
+			"endsAt": "date",
+			"lentAmount": "float",
+			"totalToPay": "float",
+			"monthInstallment(rata)": "float",
+			"installments": [
 				{
-					_id
-					amount: "float",
-					amountLeftToPay: "float",
-					paymentDate(data do kiedy trzeba zapłacic): "date",
-					paidAt: "date/null"
+					"_id": "number of installment"
+					"amount": "float",
+					"amountLeftToPay": "float",
+					"paymentDate(data do kiedy trzeba zapłacic)": "date",
+					"paidAt": "date/null"
 				}
 			]
-			interest(odsetki za zwłokę): "float",
-			autoPayment: "boolean"
+			"interest(odsetki za zwłokę)": "float",
+			"autoPayment": "boolean"
 		}
 	],
-	standingOrders(przelewy cykliczne)?: [
+	"standingOrders(przelewy cykliczne)?": [
 		{
-			title: "string",
-			to: "NumerRachunku",
-			nextPayment: "date - can be past date if failed",
-			lastPaymentFailed: "boolean",
-			currenct: "waluta",
-			amount: "float"
+			"title": "string",
+			"to": "NumerRachunku",
+			"nextPayment": "date - can be past date if failed",
+			"lastPaymentFailed": "boolean",
+			"currenct": "waluta",
+			"amount": "float"
 		}
 	],
-	savedRecipients: [
-		accountNumber: "NumerKonta",
-		recipientName(wpisane przez użytkownika): "String"
+	"savedRecipients": [
+		"accountNumber": "NumerKonta",
+		"recipientName(wpisane przez użytkownika)": "String"
 	],
-	cryptoAccountInfo: {
-		accountLevel: "int (1-10)",
-		levelProgress: "int (do uzgodnienia, kazdy level iles trzeba kupic/sprzedac)",
-		dollarsTraded: "float"
+	"cryptoAccountInfo": {
+		"accountLevel": "int (1-10)",
+		"levelProgress": "int (do uzgodnienia, kazdy level iles trzeba kupic/sprzedac)",
+		"dollarsTraded": "float"
 	}
 }
 ```

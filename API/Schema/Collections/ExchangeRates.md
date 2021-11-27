@@ -1,23 +1,23 @@
 ```json
 {
-	type: "fiat",
-	exchangeRates: [
+	"type": "fiat",
+	"exchangeRates": [
 		{
-			currency: "string (USD/PLN/EUR...) / ENUM?",
-			price: "float"
+			"currency": "string (USD/PLN/EUR...) / ENUM?",
+			"price": "float"
 		}
 	],
-	defaultCurrency: "USD/PLN/EUR"
+	"defaultCurrency": "USD/PLN/EUR"
 },
 {
-	type: "crypto",
-	exchangeRates: [
+	"type": "crypto",
+	"exchangeRates": [
 		{
-			currency: "string (BTC/ETH/LTC...) / ENUM?",
-			price: "float",
-			withdrawFee*: "float"
+			"currency": "string (BTC/ETH/LTC...) / ENUM?",
+			"price": "float",
+			"withdrawFee"*: "float"
 		},
-		defaultCurrency: "USDT/BTC/ETH"
+		"defaultCurrency": "USDT/BTC/ETH"
 	],
 }
 ```

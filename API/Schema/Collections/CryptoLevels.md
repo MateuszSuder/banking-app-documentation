@@ -1,8 +1,8 @@
 ```json
 {
-	_id: "1-10", // Level?
-	requirements: "int - ile $ musi zostac sprzedane/kupione",
-	fee: "float"
+	"_id": "1-10", // Level?
+	"requirements": "int - ile $ musi zostac sprzedane/kupione",
+	"fee": "float"
 }
 ```
 
