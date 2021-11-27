@@ -15,7 +15,7 @@
 		{
 			"currency": "string (BTC/ETH/LTC...) / ENUM?",
 			"price": "float",
-			"withdrawFee"*: "float"
+			"withdrawFee*": "float"
 		},
 		"defaultCurrency": "USDT/BTC/ETH"
 	],
