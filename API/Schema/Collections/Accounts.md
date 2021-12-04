@@ -40,8 +40,10 @@
 			"to": "NumerRachunku",
 			"nextPayment": "date - can be past date if failed",
 			"lastPaymentFailed": "boolean",
-			"currenct": "waluta",
-			"amount": "float"
+			"currency": {
+				"currency": "waluta",
+				"amount": "float"
+			}
 		}
 	],
 	"savedRecipients": [
