@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "API/Schema/Collections/Accounts.md",
+            "file": "API/Schema/Collections/ExchangeRates.md",
             "mode": "source"
           }
         }
@@ -68,7 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "API/Schema/Collections/Accounts.md",
+                "file": "API/Schema/Collections/ExchangeRates.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -88,12 +88,12 @@
   },
   "active": "282b9b19bf405772",
   "lastOpenFiles": [
+    "API/Schema/Collections/ExchangeRates.md",
+    "API/Schema/Collections/CryptoLevels.md",
     "API/Schema/Collections/Accounts.md",
+    "API/Schema/Collections/Transactions.md",
     "API/Additional infomations/Methods/GET.md",
     "API/Api helper.md",
-    "API/Schema/Collections/CryptoLevels.md",
-    "API/Schema/Collections/ExchangeRates.md",
-    "API/Schema/Collections/Transactions.md",
     "API/Additional infomations/Methods/PUT.md",
     "API/Template.md",
     "API/Schema/Collections/Users.md",

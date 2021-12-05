@@ -1,7 +1,7 @@
 ```json
 {
 	"type": "fiat",
-	"exchangeRates": [
+	"rates": [
 		{
 			"currency": "string (USD/PLN/EUR...) / ENUM?",
 			"price": "float"
