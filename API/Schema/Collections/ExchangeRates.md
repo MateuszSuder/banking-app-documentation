@@ -17,8 +17,8 @@
 			"price": "float",
 			"withdrawFee*": "float"
 		},
-		"defaultCurrency": "USDT/BTC/ETH"
 	],
+	"defaultCurrency": "USDT/BTC/ETH"
 }
 ```
 
