@@ -89,9 +89,9 @@
   "active": "282b9b19bf405772",
   "lastOpenFiles": [
     "API/Schema/Collections/Codes.md",
-    "API/Schema/Collections/Accounts.md",
-    "API/Schema/Collections/ExchangeRates.md",
     "API/Schema/Collections/CryptoLevels.md",
+    "API/Schema/Collections/ExchangeRates.md",
+    "API/Schema/Collections/Accounts.md",
     "API/Schema/Collections/Transactions.md",
     "functionalities.md",
     "API/Additional infomations/Methods/GET.md",
