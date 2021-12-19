@@ -7,13 +7,7 @@
 			"amount": "float"
 		},
 		{}
-	],
-	"codes": [
-		{
-			"_id": "int (1-8)"
-			"code": "String (8 digits)"
-		}
-	],
+	]
 	"loans?": [
 		{
 			"startedAt": "date",
