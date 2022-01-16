@@ -47,7 +47,7 @@
 	"cryptoAccountInfo": {
 		"accountLevel": "int (1-10)",
 		"levelProgress": "int (do uzgodnienia, kazdy level iles trzeba kupic/sprzedac)",
-		"dollarsTraded": "float"
+		"dollarsTr	aded": "float"
 	}
 }
 ```
