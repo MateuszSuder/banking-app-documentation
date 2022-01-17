@@ -1,0 +1,353 @@
+swagger: '2.0'
+info:
+  description: API documentation for basic banking application made in JAVA.
+  version: 0.0.1
+  title: Banking Application
+basePath: /api
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+paths:
+  "/account/info/":
+    get:
+      security:
+      - Bearer: []
+      tags:
+      - accounts
+      parameters:
+      - $ref: "#/parameters/Code"
+      responses:
+        200:
+          description: "Accounts retrived successfully"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/BankAccount"
+  "/account/info/{accountType}":
+    get:
+      security:
+        - Bearer: []
+      tags:
+      - accounts
+      parameters:
+      - $ref: "#/parameters/Code"
+      - $ref: "#/parameters/AccountType"
+      responses:
+        200:
+          description: "Account info returned"
+          schema:
+            $ref: "#/definitions/BankAccount"
+        500:
+          description: "Invalid iban"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  "/account/open/{accountType}":
+    post:
+      security:
+      - Bearer: []
+      tags:
+      - accounts
+      parameters:
+      - $ref: "#/parameters/Code"
+      - $ref: "#/parameters/AccountType"
+      responses:
+        201:
+          description: "Account created"
+          schema:
+            type: "object"
+            properties:
+              IBAN_raw:
+                type: "string"
+                description: "Raw iban"
+                example: "74280350220320150770176193"
+              IBAN:
+                type: "string"
+                description: "iban"
+                example: "74 2803 5022 0320 1507 7017 6193"
+        400:
+          description: "Invalid account type"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        409:
+          description: "User has already this account type"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  "/account/transfer/{accountType}":
+    post:
+      security:
+      - Bearer: []
+      tags:
+      - accounts
+      parameters:
+      - $ref: "#/parameters/Code"
+      - $ref: "#/parameters/AccountType"
+      - in: body
+        name: transferInput
+        required: true
+        schema:
+          $ref: "#/definitions/TransferInput"
+      responses:
+        200:
+          description: "Transfer done"
+        400:
+          description: "Accounts are of other account types"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        406:
+          description: "Not enought funds"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        409:
+          description: "Account's IBANs are the same"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  "/health":
+    get:
+      tags:
+      - health
+      responses:
+        200:
+          description: "Healthy"
+          schema:
+            description: "Current time"
+            type: "string"
+            example: "2022-01-16T23:55:09.337"
+  "/loan/info":
+    get:
+      tags:
+      - loan
+      responses:
+        200:
+          description: "Loan config retrived"
+          schema:
+            type: "object"
+            properties:
+              loanRate:
+                type: "number"
+                example: 1.75
+              minLoanLengthInMonths:
+                type: "integer"
+                example: 3
+              maxLoanLengthInMonths:
+                type: "integer"
+                example: 60
+              minLoanValue:
+                type: "number"
+                example: 1000
+              maxLoanValue:
+                type: "number"
+                example: 25000
+  "/loan/take":
+    post:
+      security:
+      - Bearer: []
+      tags:
+      - loan
+      parameters:
+      - $ref: "#/parameters/Code"
+      - in: body
+        name: loanInput
+        required: true
+        schema:
+          $ref: "#/definitions/LoanInput"
+      responses:
+        200:
+          description: "Loan created"
+          schema:
+            $ref: "#/definitions/Loan"
+        404:
+          description: "Account not found"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        409:
+          description: "Account has active loan"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  "/loan/pay":
+    put:
+      security:
+      - Bearer: []
+      tags:
+      - loan
+      parameters:
+      - $ref: "#/parameters/Code"
+      - in: body
+        name: payLoanInput
+        required: true
+        schema:
+          $ref: "#/definitions/PayLoanInput"
+      responses:
+        200:
+          description: "Loan paid"
+          schema:
+            type: "object"
+            properties:
+              amountLeft:
+                description: "Balance left after payment"
+                type: "number"
+              
+        400:
+          description: "Balance is too low"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  "/loan/autoPayment/{autoPay}":
+    put:
+      security:
+      - Bearer: []
+      tags:
+      - loan
+      parameters:
+      - $ref: "#/parameters/Code"
+      - in: path
+        name: autoPay
+        required: true
+        type: "boolean"
+      responses:
+        200:
+          description: "Autopayment changed"
+        404:
+          description: "No loan found"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+parameters:
+  AccountType:
+    in: path
+    name: accountType
+    required: true
+    type: string
+    enum: ["standard", "multi"]
+  Code:
+    in: header
+    name: X-Code
+    type: "number"
+    description: "Authorization code generated for user"
+    required: true
+definitions:
+  ErrorResponse:
+    type: "object"
+    properties:
+      message:
+        type: "string"
+      message_details:
+        type: "string"
+      code:
+        type: "integer"
+  Currency:
+    description: "Currency"
+    properties:
+      currency:
+        type: "string"
+        enum: ["PLN","USD","CHF","EUR","JPY","GBP"]
+      amount:
+        type: "number"
+  Recipient:
+    description: "Recipient info"
+    properties:
+      accountNumber:
+        type: "string"
+      recipientName:
+        type: "string"
+  TransferInput:
+    description: "Transfer input"
+    type: "object"
+    properties:
+      to:
+        $ref: "#/definitions/Recipient"
+      value:
+        $ref: "#/definitions/Currency"
+      title:
+        type: "string"
+  Installment:
+    properties:
+      id:
+        type: "string"
+      amount:
+        type: "number"
+      amountLeftToPay:
+        type: "number"
+      paidAt:
+        type: "string"
+  Loan:
+    properties:
+      startedAt:
+        type: "string"
+        example: "2022-01-16T23:55:09.337"
+      endsAt:
+        type: "string"
+        example: "2022-01-16T23:55:09.337"
+      lentAmount:
+        type: "number"
+      totalToPay:
+        type: "number"
+      installments:
+        type: "array"
+        items:
+          $ref: "#/definitions/Installment"
+      interest:
+        type: "number"
+      autoPayment:
+        type: "boolean"
+  StandingOrder:
+    properties:
+      id:
+        type: "string"
+      title:
+        type: "string"
+      to:
+        $ref: "#/definitions/Recipient"
+      nextPayment:
+        type: "string"
+        example: "2022-01-16T23:55:09.337"
+      lastPaymentFailed:
+        type: "boolean"
+      value:
+        $ref: "#/definitions/Currency"
+  Alert:
+    properties:
+      name:
+        type: "string"
+      value:
+        type: "string"
+      date:
+        type: "string"
+  BankAccount:
+    description: "Bank account"
+    properties:
+      id:
+        type: "string"
+      currencies:
+        type: "array"
+        items:
+          $ref: "#/definitions/Currency"
+      loans:
+        type: "array"
+        items:
+          $ref: "#/definitions/Loan"
+      standingOrders:
+        type: "array"
+        items:
+          $ref: "#/definitions/StandingOrder"
+      alertsList:
+        type: "array"
+        items:
+          $ref: "#/definitions/Alert"
+  LoanInput:
+    description: "Loan input"
+    properties:
+      loanAmount:
+        type: "number"
+      loanLength:
+        type: "integer"
+      loanRate:
+        type: "number"
+      autoPayment:
+        type: "boolean"
+  PayLoanInput:
+    description: "Pay loan input"
+    properties:
+      amount:
+        type: "number"
+        
+        
