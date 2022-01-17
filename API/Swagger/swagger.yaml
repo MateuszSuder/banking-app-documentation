@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   description: API documentation for basic banking application made in JAVA.
-  version: 0.0.1
+  version: 1.0.0
   title: Banking Application
 basePath: /api
 securityDefinitions:
@@ -211,6 +211,281 @@ paths:
           description: "No loan found"
           schema:
             $ref: "#/definitions/ErrorResponse"
+  "/rate":
+    get:
+      tags:
+      - rate
+      responses:
+        200:
+          description: "Exchange rates retrived"
+          schema:
+            $ref: "#/definitions/ExchangeRate"
+    post:
+      tags:
+      - rate
+      security:
+      - Bearer: []
+      parameters:
+      - $ref: "#/parameters/Code"
+      - in: body
+        name: exchangeInput
+        required: true
+        schema:
+          $ref: "#/definitions/ExchangeInput"
+      responses:
+        200:
+          description: "Exchanged successfully"
+          schema:
+            $ref: "#/definitions/ExchangeInfo"
+        400:
+          description: "Multicurrency account is not open or not enough fund"
+          schema: 
+            $ref: "#/definitions/ErrorResponse"
+        404:
+          description: "Currency not found"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  "/rate/info":
+    get:
+      tags:
+      - rate
+      parameters:
+      - in: body
+        name: exchangeInput
+        required: true
+        schema:
+          $ref: "#/definitions/ExchangeInput"
+      responses:
+        200:
+          description: "Exchange info retrived"
+          schema:
+            $ref: "#/definitions/ExchangeInfo"
+        404:
+          description: "Currency not found"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  "/recipient/{accountType}":
+    post:
+      security:
+      - Bearer: []
+      tags:
+      - recipient
+      parameters:
+      - $ref: "#/parameters/Code"
+      - $ref: "#/parameters/AccountType"
+      - in: body
+        name: recipient
+        required: true
+        schema:
+          $ref: "#/definitions/Recipient"
+      responses:
+        201:
+          description: "Recipient added to account"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Recipient"
+        404:
+          description: "No account found for this type of account type"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        409:
+          description: "Recipient already exists"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+    delete:
+      security:
+      - Bearer: []
+      tags:
+      - recipient
+      parameters:
+      - $ref: "#/parameters/Code"
+      - $ref: "#/parameters/AccountType"
+      - in: query
+        name: recipientIban
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Deleted successfully"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Recipient"
+        404:
+          description: "Recipient doesn't exist"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+    put:
+      security:
+      - Bearer: []
+      tags:
+      - recipient
+      parameters:
+      - $ref: "#/parameters/Code"
+      - $ref: "#/parameters/AccountType"
+      - in: body
+        name: recipient
+        required: true
+        schema:
+          $ref: "#/definitions/Recipient"
+      responses:
+        200:
+          description: "Recipient modified"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Recipient"
+        404:
+          description: "Recipient doesn't exists"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  "/recipient/{accountType}/send":
+    post:
+      security:
+      - Bearer: []
+      tags:
+      - recipient
+      parameters:
+      - $ref: "#/parameters/Code"
+      - $ref: "#/parameters/AccountType"
+      - in: body
+        name: transferInput
+        required: true
+        schema:
+          $ref: "#/definitions/TransferInput"
+      responses:
+        200:
+          description: "Transfer filled successfully, balance returned"
+          schema:
+            $ref: "#/definitions/Currency"
+        400:
+          description: "Accounts are of other account types"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        404:
+          description: "Recipient not bound to an account"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        406:
+          description: "Not enought funds"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        409:
+          description: "Account's IBANs are the same"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  "/standing/{accountType}":
+    post:
+      security:
+      - Bearer: []
+      tags:
+      - standingOrder
+      parameters:
+      - $ref: "#/parameters/Code"
+      - $ref: "#/parameters/AccountType"
+      - in: body
+        name: standingOrderInput
+        required: true
+        schema:
+          $ref: "#/definitions/StandingOrderInput"
+      responses:
+        201:
+          description: "Standing order added"
+          schema:
+            type: "array"
+            items: 
+              $ref: "#/definitions/StandingOrder"
+        404:
+          description: "Account with given iban not found"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  "/standing/{accountType}/{standingOrderId}":
+    delete:
+      security:
+      - Bearer: []
+      tags:
+      - standingOrder
+      parameters:
+      - $ref: "#/parameters/Code"
+      - $ref: "#/parameters/AccountType"
+      - in: path
+        name: standingOrderId
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Standing order deleted"
+          schema:
+            type: "array"
+            items: 
+              $ref: "#/definitions/StandingOrder"
+        404:
+          description: "Account not found or given standing order is not bound to this account"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+    put:
+      security:
+      - Bearer: []
+      tags:
+      - standingOrder
+      parameters:
+      - $ref: "#/parameters/Code"
+      - $ref: "#/parameters/AccountType"
+      - in: path
+        name: standingOrderId
+        required: true
+        type: "string"
+      - in: body
+        name: standingOrderInput
+        required: true
+        schema:
+          $ref: "#/definitions/StandingOrderInput"
+      responses:
+        200:
+          description: "Standing order modified"
+          schema:
+            type: "array"
+            items: 
+              $ref: "#/definitions/StandingOrder"
+        404:
+          description: "Account not found or given standing order is not bound to this account"
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  "/transaction/{accountType}":
+    post:
+      security:
+      - Bearer: []
+      tags:
+      - transaction
+      parameters:
+      - $ref: "#/parameters/Code"
+      - $ref: "#/parameters/AccountType"
+      - in: body
+        name: transactionPageInput
+        required: true
+        schema:
+          $ref: "#/definitions/TransactionPageInput"
+      responses:
+        200:
+          description: "Transaction page returned"
+          schema:
+            $ref: "#/definitions/TransactionPageOutput"
+  "/transaction/{accountType}/export":
+    post:
+      security:
+      - Bearer: []
+      tags:
+      - transaction
+      parameters:
+      - $ref: "#/parameters/Code"
+      - $ref: "#/parameters/AccountType"
+      responses:
+        200:
+          description: "CSV returned"
+          schema:
+            type: "string"
+      
 parameters:
   AccountType:
     in: path
@@ -234,12 +509,14 @@ definitions:
         type: "string"
       code:
         type: "integer"
+  Currencies:
+    type: "string"
+    enum: ["PLN","USD","CHF","EUR","JPY","GBP"]
   Currency:
     description: "Currency"
     properties:
       currency:
-        type: "string"
-        enum: ["PLN","USD","CHF","EUR","JPY","GBP"]
+        $ref: "#/definitions/Currencies"
       amount:
         type: "number"
   Recipient:
@@ -349,5 +626,102 @@ definitions:
     properties:
       amount:
         type: "number"
-        
+  Rate:
+    properties:
+      currency:
+        $ref: "#/definitions/Currencies"
+      price:
+        type: "number"
+  ExchangeRate:
+    properties:
+      type:
+        type: "string"
+        enum: ["fiat", "crypto"]
+      rates:
+        type: "array"
+        items:
+          $ref: "#/definitions/Rate"
+      defaultCurrency:
+        $ref: "#/definitions/Currencies"
+  ExchangeInput:
+    properties:
+      from:
+        $ref: "#/definitions/Currency"
+      to:
+        $ref: "#/definitions/Currencies"
+  ExchangeInfo:
+    properties:
+      from:
+        $ref: "#/definitions/Currency"
+      to: 
+        $ref: "#/definitions/Currency"
+      rate:
+        type: "number"
+  StandingOrderInput:
+    $ref: "#/definitions/TransferInput"
+  PaginationInput:
+    properties:
+      offset:
+        type: "number"
+      limit:
+        type: "number"
+  IOFilter:
+    type: "string"
+    enum: ["ANY", "INCOMING", "OUTGOING"]
+  SortType:
+    type: "string"
+    enum: ["DATE_ASC", "DATE_DESC", "VALUE_ASC", "VALUE_DESC"]
+  TransactionType:
+    type: "string"
+    enum: ["MANUAL", "STANDING_ORDER", "LOAN_PAYMENT"]
+  TransactionPageInput:
+    properties:
+      pagination:
+        $ref: "#/definitions/PaginationInput"
+      ioFilter:
+        $ref: "#/definitions/IOFilter"
+      startDate:
+        type: "string"
+        example: "2022-01-16T23:55:09.337"
+      endDate:
+        type: "string"
+        example: "2022-01-16T23:55:09.337"
+      recipientName:
+        type: "string"
+      recipientIban:
+        type: "string"
+      amountFrom:
+        type: "number"
+      amountTo:
+        type: "number"
+      currency:
+        type: "string"
+      title:
+        type: "string"
+      sortType:
+        $ref: "#/definitions/SortType"
+      transactionType:
+        $ref: "#/definitions/TransactionType"
+  Transaction:
+    properties:
+      from:
+        type: "string"
+      receiverInfo:
+        $ref: "#/definitions/Recipient"
+      title:
+        type: "string"
+      sendValue:
+        $ref: "#/definitions/Currency"
+      transactionType:
+        $ref: "#/definitions/TransactionType"
+  TransactionPageOutput:
+    properties:
+      transactions:
+        type: "array"
+        items: 
+          $ref: "#/definitions/Transaction"
+      paginationOutput:
+        properties:
+          count:
+            type: "number"
         
